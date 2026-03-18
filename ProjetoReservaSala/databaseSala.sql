@@ -1,8 +1,8 @@
 #CRIAR A BASE DE DADOS
-create database mapa;
+create database banco_salas;
 
 #SELECIONAR O BANCO DE DADOS
-use mapa;
+use banco_salas;
 
 #CRIANDO A TABELA DE USUARIO	
 create table tbl_usuario(
@@ -21,11 +21,11 @@ create table tbl_sala(
 	andar integer,
 	capacidade integer,
 	dtcria datetime default now(),
-	estatus char(01 default ''
+	estatus char(01) default ''
 );
 
 create table tbl_professor(
-	codigo integer auto_increment primary_key,
+	codigo integer auto_increment primary key,
 	nome varchar(30) default '',
 	cpf varchar(11) default '',
 	tipo char(1) default 'F',
@@ -39,7 +39,7 @@ create table tbl_turma(
 	hora_ini time,
 	hora_fim time,
 	dtcria datetime default now(),
-	estatus char(01) default 11
+	estatus char(01) default ''
 );
 
 create table tbl_horario(
@@ -63,6 +63,6 @@ create table tbl_mapa(
 	foreign key (sala) references tbl_sala(codigo),
 	foreign key (codigo_horario) references tbl_horario(codigo),
 	foreign key (codigo_turma) references tbl_turma(codigo),
-	foreign key (codigo_professor references tbl_professor(codigo)
+	foreign key (codigo_professor) references tbl_professor(codigo)
 );
 
