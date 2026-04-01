@@ -262,7 +262,7 @@ class Sala extends CI_Controller{
             $resultado = json_decode($json);
             $lista = [
                 "codigo" => '0',
-                "descrição" => '0',
+                "descricao" => '0',
                 "andar" => '0',
                 "capacidade" => '0'
             ];
@@ -280,7 +280,7 @@ class Sala extends CI_Controller{
                     $retornoCodigo = validarDados($resultado->codigo, 'int', true);
                     $retornoDescricao = validarDadosConsulta($resultado->descricao, 'string');
                     $retornoAndar = validarDadosConsulta($resultado->andar,'int');
-                    $retornoCapacidade = validarDadosConsulta($resultado->consulta, 'int');
+                    $retornoCapacidade = validarDadosConsulta($resultado->capacidade, 'int');
 
                     if ($retornoCodigo['codigoHelper'] != 0){
                         $erros[] = ['codigo' => $retornoCodigo['codigoHelper'],
@@ -313,7 +313,7 @@ class Sala extends CI_Controller{
                         $this->setAndar($resultado->andar);
                         $this->setCapacidade($resultado->capacidade);
 
-                        $this->load->mode('M_sala');
+                        $this->load->model('M_sala');
                         $resBanco = $this->M_sala->alterar($this->getCodigo(),
                                                            $this->getDescricao(),
                                                            $this->getAndar(),
