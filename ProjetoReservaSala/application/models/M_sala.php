@@ -164,7 +164,7 @@ class M_sala extends CI_Model
                 }
 
                 //Termino a concatenação da query
-                $queryFinal = rtrim($query. ", ") . " where codigo = $codigo";
+                $queryFinal = rtrim($query, ", ") . " where codigo = $codigo";
 
                 //Executo a Query de atualização de dados
                 $this->db->query($queryFinal);
@@ -177,7 +177,7 @@ class M_sala extends CI_Model
                     );
                 } else {
                     $dados = array(
-                        'codigo' => 0,
+                        'codigo' => 8,
                         'msg' => 'Houve algum problema na atualização na tabela da sala.'
                     );
                 }
@@ -204,7 +204,7 @@ class M_sala extends CI_Model
 
             if ($retornoConsulta['codigo'] == 10){
                 //query de atualização dos dados
-                $this->db->query("update tbl_sala set estatus = '0' where codigo = $codigo")
+                $this->db->query("update tbl_sala set estatus = 'D' where codigo = $codigo");
 
                 //Verificar se a atualização ocorreu com sucesso
                 if ($this->db->affected_rows() > 0){
