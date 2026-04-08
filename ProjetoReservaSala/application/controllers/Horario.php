@@ -295,7 +295,7 @@ class Horario extends CI_Controller {
                     $retornoHoraInicial = validarDadosConsulta($resultado->horaInicial, 'hora');
                     $retornoHoraFinal = validarDadosConsulta($resultado->horaFinal, 'hora');
 
-                    $retornoComparacaoHoras = compararDataHora($resultado->horaFinal, $resultado->horaInicial, 'hora');
+                    $retornoComparacaoHoras = compararDataHora($resultado->horaInicial, $resultado->horaFinal, 'hora');
 
                     if ($retornoCodigo['codigoHelper'] != 0){
                         $erros[] = ['codigo' => $retornoCodigo['codigoHelper'],
@@ -365,7 +365,7 @@ class Horario extends CI_Controller {
         }
 
         //Transforma o array em JSON
-        echo json_decode($retorno);
+        echo json_encode($retorno);
     }
 
     public function desativar(){
