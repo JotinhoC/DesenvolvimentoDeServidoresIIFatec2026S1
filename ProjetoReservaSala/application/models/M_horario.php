@@ -149,7 +149,7 @@ class M_horario extends CI_Model
             //Verifico se o horário já esta cadastrado
             $retornoConsulta = $this->consultar($codigo, '', '', '');
 
-            if($retornoConsulta['codigo'] == 10){
+            if($retornoConsulta['codigo'] == 1){
                 //Inicio a query para atualização
                 $query = "update tbl_horario set ";
 
