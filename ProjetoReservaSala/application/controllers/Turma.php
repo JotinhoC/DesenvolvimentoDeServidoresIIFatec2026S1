@@ -160,6 +160,191 @@ class Turma extends CI_Controller {
         //transforma o array em JSON
         echo json_encode($retorno);
     }
+
+    public function consultar(){
+        //Atributos para controlar o status de nosso método
+        $erros = [];
+        $sucesso = false;
+
+        try {
+            $json = file_get_contents('php://input');
+            $resultado = json_decode($json);
+            $lista = [
+                "codigo" => '0',
+                "descricao" => '0',
+                "capacidade" => '0',
+                "dataInicio" => '0'    
+            ];
+
+            if (verificarParam($resultado, $lista) != 1) {
+                //Validar vindos de forma correta do frontend (Helper)
+                $erros[] = ['codigo' => 99, 'msg' => 'Campos inexistentes ou incorretos no FrontEnd.'];
+            }else{
+                //Validar campos quanto ao tipo de dado e tamanho (Helper)
+                $retornoCodigo = validarDadosConsulta($resultado->codigo, 'int');
+                $retornoDescricao = validarDadosConsulta($resultado->descricao, 'string');
+                $retornoCapacidade = validarDadosConsulta($resultado->capacidade, 'int');
+                $retornoDataInicio = validarDadosConsulta($resultado->dataInicio,'date');
+
+                if($retornoCodigo['codigoHelper'] != 0){
+                    $erros[] = ['codigo' => $retornoCodigo['codigoHelper'],
+                                'campo' => 'Codigo',
+                                'msg' => $retornoCodigo['msg']];
+                }
+
+                if($retornoDescricao['codigoHelper'] != 0){
+                    $erros[] = ['codigo' => $retornoDescricao['codigoHelper'],
+                                'campo' => 'Descrição',
+                                'msg' => $retornoDescricao['msg']];
+                }
+
+                if($retornoCapacidade['codigoHelper'] != 0){
+                    $erros[] = ['codigo' => $retornoCapacidade['codigoHelper'],
+                                'campo' => 'Capacidade',
+                                'msg' => $retornoCapacidade['msg']];
+                }
+
+                if($retornoDataInicio['codigoHelper'] != 0){
+                    $erros[] = ['codigo' => $retornoDataInicio['codigoHelper'],
+                                'campo' => 'Andar',
+                                'msg' => $retornoDataInicio['msg']];
+                }
+
+                //Se não encontrar erros
+                if (empty($erros)){
+                    $this->setCodigo($resultado->codigo);
+                    $this->setDescricao($resultado->descricao);
+                    $this->setCapacidade($resultado->capacidade);
+                    $this->setDataInicio($resultado->dataInicio);
+
+                    $this->load->model('M_turma');
+                    $resBanco = $this->M_turma->consultar($this->getCodigo(),
+                                                       $this->getDescricao(),
+                                                       $this->getCapacidade(),
+                                                       $this->getDataInicio());
+
+                    if ($resBanco['codigo'] == 1){
+                        $sucesso = true;
+                    } else {
+                        //Captura erro do banco
+                        $erros[] = [
+                            'codigo' => $resBanco['codigo'],
+                            'msg' => $resBanco['msg']
+                        ];
+                    }
+                }
+            }
+        } catch (Exception $e){
+            $erros[] = ['codigo' => 0, 'msg' => 'Erro Inesperado: ' . $e->getMessage()];
+        }
+
+        //Monta retorno único
+        if ($sucesso == true){
+            $retorno = ['sucesso' => $sucesso, 'codigo' => $resBanco['codigo'],
+                        'msg' => $resBanco['msg'],
+                        'dados' => $resBanco['dados']];
+        } else {
+            $retorno = ['sucesso' => $sucesso, 'erros' => $erros];
+        }
+
+        //Transforma o array em JSON
+        echo json_encode($retorno);
+    }
+
+    public function alterar(){
+        //Atributos para controlar o status de nosso método 
+        $erros = [];
+        $sucesso = false;
+
+        try {
+            $json = file_get_contents('php://input');
+            $resultado = json_decode($json);
+            $lista = [
+                "codigo" => '0',
+                "descricao" => '0',
+                "capacidade" => '0',
+                "dataInicio" => '0'
+            ];
+
+            if (verificarParam($resultado, $lista) != 1){
+                //Validar vindos de formas correta do frontend (Helper)
+                $erros[] = ['codigo' => 99, 'msg' => 'Campos inexistentes ou incorretos no frontEnd.'];
+            } else {
+                //Pelo menos um dos três parâmetros precisam ter dados para acontecer a atualização
+                if(trim($resultado->descricao) ==  '' && trim($resultado->capacidade) == '' && 
+                    trim($resultado->dataInicio) == ''){
+                        $erros[] = ['codigo' => 12,
+                                    'msg' => 'Pelo menos um parâmetro precisa ser passado para atualização'];
+                    }else{
+                        //Validar campos quanto ao tipo de dado e tamanho (Helper)
+                        $retornoCodigo = validarDados($resultado->codigo, 'int', true);
+                        $retornoDescricao = validarDados($resultado->descricao, 'string');
+                        $retornoCapacidade = validarDados($resultado->capacidade, 'int');
+                        $retornoDataInicio = validarDados($resultado->dataInicio, 'date');
+
+                        if($retornoCodigo['codigoHelper'] != 0){
+                            $erros[] = ['codigo' => $retornoCodigo['codigoHelper'],
+                                        'campo' => 'Codigo',
+                                        'msg' => $retornoCodigo['msg']];
+                        }
+
+                        if($retornoDescricao['codigoHelper'] != 0){
+                            $erros[] = ['codigo' => $retornoDescricao['codigoHelper'],
+                                        'campo' => 'Descrição',
+                                        'msg' => $retornoDescricao['msg']];
+                        }
+
+                        if($retornoCapacidade['codigoHelper'] != 0){
+                            $erros[] = ['codigo' => $retornoCapacidade['codigoHelper'],
+                                        'campo' => 'Capacidade',
+                                        'msg' => $retornoCapacidade['msg']];
+                        }
+
+                        if($retornoDataInicio['codigoHelper'] != 0){
+                            $erros[] = ['codigo' => $retornoDataInicio['codigoHelper'],
+                                        'campo' => 'Andar',
+                                        'msg' => $retornoDataInicio['msg']];
+                        }
+                        //Se não encontrar erros
+                        if (empty($erros)){
+                            $this->setCodigo($resultado->codigo);
+                            $this->setDescricao($resultado->descricao);
+                            $this->setCapacidade($resultado->capacidade);
+                            $this->setDataInicio($resultado->dataInicio);
+
+                            $this->load->model('M_turma');
+                            $resBanco = $this->M_turma->alterar($this->getCodigo(),
+                                                                $this->getDescricao(),
+                                                                $this->getCapacidade(),
+                                                                $this->getDataInicio());
+
+                            if ($resBanco['codigo'] == 1) {
+                                $sucesso = true;
+                            } else {
+                                //Captura erro do banco
+                                $erros[] = [
+                                    'codigo' => $resBanco['codigo'],
+                                    'msg' => $resBanco['msg']
+                                ];
+                            }
+                        }
+                    }
+            }
+        } catch(Exception $e){
+            $erros[] = ['codigo' => 0, 'msg' => 'Erro inesperado ' . $e->getMessage()];
+        }
+
+        //Monta retorno único
+        if ($sucesso == true){
+            $retorno = ['sucesso' => $sucesso, 'codigo' => $resBanco['codigo'],
+                        'msg' => $resBanco['msg']];
+        } else {
+            $retorno = ['sucesso' => $sucesso, 'erros' => $erros];
+        }
+
+        //Transforma o array em JSON
+        echo json_encode($retorno);
+    }
 }
 
 ?>
