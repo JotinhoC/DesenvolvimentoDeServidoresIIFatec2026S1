@@ -36,8 +36,8 @@ create table tbl_professor(
 create table tbl_turma(
 	codigo integer auto_increment primary key,
 	descricao varchar(50) default '',
-	hora_ini time,
-	hora_fim time,
+	capacidade integer default 0,
+	dataInicio time,
 	dtcria datetime default now(),
 	estatus char(01) default ''
 );
