@@ -93,5 +93,145 @@ class M_turma extends CI_Model
         return $dados;
     }
 
+    public function alterar($codigo, $descricao, $capacidade, $dataInicio){
+        try{
+            //Verifica se a turma ja esta cadastrada
+            $retornoConsulta = $this->consultaTurmaCod($codigo);
+
+            if ($retornoConsulta['codigo'] == 10){
+                //Monta a query dinâmica
+                $query = "update tbl_turma set ";
+                $updates = [];
+
+                if ($descricao !== ''){
+                    $updates[] = "descricao = '$descricao'";
+                }
+                if ($capacidade !== ''){
+                    $updates[] = "capacidade = $capacidade";
+                }
+                if ($dataInicio !== ''){
+                    $updates[] = "dataInicio = '$dataInicio'";
+                }
+
+                $query .= implode(", ", $updates) . " where codigo = $codigo ";
+
+                //Prepara os valores para binding
+                $params = [];
+                if ($descricao !== ''){
+                    $params[] = $descricao;
+                }
+                if ($capacidade !== ''){
+                    $params[] = $capacidade;
+                }
+                if ($dataInicio !== ''){
+                    $params[] = $dataInicio;
+                } 
+                $params[] = $codigo;
+
+                //Executa a query
+                $this->db->query($query, $params);
+
+                //Verifica se a atualização foi bem-sucedida
+                if ($this->db->affected_rows() > 0){
+                    $dados = array(
+                        'codigo' => 1,
+                        'msg' => 'Turma atualizada corretamente.'
+                    );
+                } else {
+                    $dados = array(
+                        'codigo' => 8,
+                        'msg' => 'Houve algum problema na atualização na tabela de turma.'
+                    );
+                }
+            } else {
+                $dados = array(
+                    'codigo' => 5,
+                    'msg' => 'Turma não cadastrada no sistema.'
+                );
+            }
+        } catch(Exception $e){
+            $dados = array(
+                'codigo' => 00,
+                'msg' => 'ATENÇÃO: O seguinte erro aconteceu -> ' . $e->getMessage()
+            );
+        }
+
+        return $dados;
+    }
+
+    private function consultaTurmaCod($codigo)
+    {
+        try{
+            //Query para consultar dados de acordo com parâmetros passados
+            $sql = "select * from tbl_turma where codigo = $codigo ";
+
+            $retornoTurma = $this->db->query($sql);
+
+            //Verificar se a consulta ocorreu com sucesso
+            if ($retornoTurma->num_rows() > 0){
+                $linha = $retornoTurma->row();
+                if (trim($linha->estatus) == "D"){
+                    $dados = array(
+                        'codigo' => 9,
+                        'msg' => 'Turma desativada no sistema.'
+                    );
+                } else {
+                    $dados = array(
+                        'codigo' => 10,
+                        'msg' => 'Consulta efetuada com sucesso.'
+                    );
+                }
+            } else {
+                $dados = array(
+                    'codigo' => 12,
+                    'msg' => 'Turma não encontrada.'
+                );
+            }
+        }catch (Exception $e){
+            $dados = array(
+                'codigo' => 00,
+                'msg' => 'ATENÇÃO: O seguinte erro aconteceu -> ' . $e->getMessage()
+            );
+        }
+
+        return $dados;
+    }
+
+    public function desativar($codigo)
+    {
+        try {
+            //Verifica se a turma já está cadastrada
+            $retornoConsulta = $this->consultaTurmaCod($codigo);
+
+            if ($retornoConsulta['codigo'] == 10){
+                //Query de atualização dos dados
+                $this->db->query("update tbl_turma set estatus = 'D' where codigo = $codigo");
+
+                //Verificar se a atualização ocorreu com sucesso
+                if ($this->db->affected_rows() > 0){
+                    $dados = array(
+                        'codigo' => 1,
+                        'msg' => 'Turma DESATIVADA corretamente.'
+                    );
+                } else {
+                    $dados = array(
+                        'codigo' => 8,
+                        'msg' => 'Houve algum problema na DESATIVAÇÃO da turma.'
+                    );
+                }
+            } else {
+                $dados = array('codigo' => $retornoConsulta['codigo'],
+                                'msg' => $retornoConsulta['msg']);
+            }
+        }catch (Exception $e){
+            $dados = array(
+                'codigo' => 00,
+                'msg' => 'ATENÇÃO: O seguinte erro aconteceu -> ' . $e->getMessage()
+            );
+        }
+
+        return $dados;
+    }
+
 }
 ?>
