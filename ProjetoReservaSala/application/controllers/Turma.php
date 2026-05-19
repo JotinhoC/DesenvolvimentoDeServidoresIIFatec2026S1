@@ -345,6 +345,66 @@ class Turma extends CI_Controller {
         //Transforma o array em JSON
         echo json_encode($retorno);
     }
+
+    public function desativar(){
+        //Atributos para controlar o status de nosso método
+        $erros = [];
+        $sucesso = false;
+
+        try {
+
+        $json = file_getcontents('php://input');
+        $resultado = json_decode($json);
+        $lista = [
+            "codigo" => '0'
+        ];
+
+        if (verificarParam($resultado, $lista) != 1){
+            //Validar vindos de forma correta do frontEnd (helper)
+            $erros[] = ['codigo' => 99, 'msg' => 'Campos inexistentes ou incorretos no FrontEnd'];
+        }else{
+            //Validar código quanto ao tipo de dado e tamanho (Helper)
+            $retornoCodigo = validarDados($resultado->codigo,'int',true);
+
+            if($retornoCodigo['codigoHelper'] != 0){
+                $erros[] = ['codigo' => $retornoCodigo['codigoHelper'],
+                            'campo' => 'Codigo',
+                            'msg' => $retornoCodigo['msg']];
+            }
+
+            //Se não encontrar erros
+            if(empty($erros)){
+                $this->setCodigo($resultado->codigo);
+
+                $this->load->model('M_turma');
+                $resBanco = $this->M_turma->desativar($this->getCodigo());
+
+                if ($resBanco['codigo'] == 1){
+                    $sucesso = true;
+                } else {
+                    //Captura erro do banco
+                    $erros[] = [
+                        'codigo' => $resBanco['codigo'],
+                        'msg' => $resBanco['msg']
+                    ];
+                }
+            }
+        }
+        } catch(Exception $e){
+            $erros[] = ['codigo' => 0, 'msg' => 'Erro inesperado: ' . $e->getMessage()];
+        }
+
+        //Monta retorno único
+        if ($sucesso == true){
+            $retorno = ['sucesso' => $sucesso, 'codigo' => $resBanco['codigo'],
+                        'msg' => $resBanco['msg']];
+        }else{
+            $retorno = ['sucesso' => $sucesso, 'erros' => $erros];
+        }
+
+        //transforma o array em JSON
+        echo json_encode($retorno);
+    }
 }
 
 ?>
