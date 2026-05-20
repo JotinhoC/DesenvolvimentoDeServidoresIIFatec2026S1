@@ -353,7 +353,7 @@ class Turma extends CI_Controller {
 
         try {
 
-        $json = file_getcontents('php://input');
+        $json = file_get_contents('php://input');
         $resultado = json_decode($json);
         $lista = [
             "codigo" => '0'
