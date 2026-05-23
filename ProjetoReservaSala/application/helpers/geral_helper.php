@@ -68,6 +68,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     return array('codigoHelper' => 7, 'msg' => 'Hora em formato inválido.');
                 }
                 break;
+            case 'email':
+                if (!filter_var($valor, FILTER_VALIDATE_EMAIL)){
+                    return array('codigoHelper' => 8, 'msg' => 'E-mail em formato invalido');
+                }
+                break;
             default:
                 return array('codigoHelper' => 0, 'msg' => 'Tipo de dado não definido.');
         }
@@ -110,6 +115,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     //Verifico se tem padrão de hora
                     if(!preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d$/', $valor)){
                         return array('codigoHelper' => 7, 'msg' => 'Hora em formato inválido.');
+                    }
+                    break;
+                case 'email':
+                    if (!filter_var($valor, FILTER_VALIDATE_EMAIL)){
+                        return array('codigoHelper' => 8, 'msg' => 'E-mail em formato invalido');
                     }
                     break;
                 default:
