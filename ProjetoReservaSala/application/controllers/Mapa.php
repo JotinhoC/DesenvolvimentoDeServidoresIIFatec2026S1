@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Professor extends CI_Controller {
+class Mapa extends CI_Controller {
     /*
     Validação dos tipos de retornos nas validações (Código de erro)
     1 - Operação realizada no banco de dados com sucesso (Inserção, Alteração, Consulta ou Exclusão)
@@ -213,7 +213,7 @@ class Professor extends CI_Controller {
         echo json_encode($retorno);
     }
 
-        public function consultar(){
+    public function consultar(){
         //Atributos para controlar o status de nosso método
         $erros = [];
         $sucesso = false;
@@ -240,7 +240,7 @@ class Professor extends CI_Controller {
                 $retornoDataReserva      = validarDadosConsulta($resultado->dataReserva, 'date');
                 $retornoCodSala   = validarDadosConsulta($resultado->codSala, 'int');
                 $retornoCodHorario      = validarDadosConsulta($resultado->codHorario, 'int');
-                $retornoCodTurma  = validarDadosConsulta($resultado->codHorario, 'int');
+                $retornoCodTurma  = validarDadosConsulta($resultado->codTurma, 'int');
                 $retornoCodProfessor = validarDadosConsulta($resultado->codProfessor, 'int');
 
                 if ($retornoCodigo['codigoHelper'] !=0){
