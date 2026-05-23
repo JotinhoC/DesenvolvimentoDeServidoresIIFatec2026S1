@@ -1,0 +1,869 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1779220314866
+  modified: 1779220314866
+  description: ""
+collection:
+  - name: Sala
+    meta:
+      id: fld_44b80e0e74f14bb09fff6285d740875b
+      created: 1779501993540
+      modified: 1779501993540
+      sortKey: -1779501993540
+      description: ""
+    children:
+      - url: http://localhost/ProjetoReservaSala/Sala/inserir
+        name: inserir
+        meta:
+          id: req_5e4e9e63a0184b608246750c4ab34675
+          created: 1779502000553
+          modified: 1779503659546
+          isPrivate: false
+          description: ""
+          sortKey: -1779502003147
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "2",
+            	"descricao": "sala",
+            	"andar": "2",
+            	"capacidade" : "3"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Sala/consultar
+        name: consultar
+        meta:
+          id: req_36da02d1093b437285a35eb426d84704
+          created: 1779502077930
+          modified: 1779502120216
+          isPrivate: false
+          description: ""
+          sortKey: -1779361196007
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"descricao": "",
+            	"andar": "",
+            	"capacidade" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Sala/alterar
+        name: alterar
+        meta:
+          id: req_cdaa6346351746e9b2cb365f2cb47d77
+          created: 1779502095975
+          modified: 1779502129313
+          isPrivate: false
+          description: ""
+          sortKey: -1779290792437
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"descricao": "",
+            	"andar": "",
+            	"capacidade" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Sala/desativar
+        name: desativar
+        meta:
+          id: req_f78f70e430ba4008865032e481ff7690
+          created: 1779502139253
+          modified: 1779502207835
+          isPrivate: false
+          description: ""
+          sortKey: -1779255590652
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "1"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Horario
+    meta:
+      id: fld_3b4357fff6354c5fbf9dcea6058a4653
+      created: 1779502238159
+      modified: 1779502238159
+      sortKey: -1779361188725
+      description: ""
+    children:
+      - url: http://localhost/ProjetoReservaSala/Horario/inserir
+        name: inserir
+        meta:
+          id: req_58ae80f616924eb0899ae28e78cdae92
+          created: 1779502238159
+          modified: 1779503676878
+          isPrivate: false
+          description: ""
+          sortKey: -1779502003147
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricao": "Horario 1",
+            	"horaInicial": "09:00",
+            	"horaFinal" : "18:00"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Horario/desativar
+        name: desativar
+        meta:
+          id: req_6e9fa1f1b008474ebebd15720646660e
+          created: 1779502238159
+          modified: 1779502364825
+          isPrivate: false
+          description: ""
+          sortKey: -1779255590652
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Horario/consultar
+        name: consultar
+        meta:
+          id: req_7e7a657c9bc34f4eba694e7a66ed17df
+          created: 1779502238159
+          modified: 1779502352600
+          isPrivate: false
+          description: ""
+          sortKey: -1779361196007
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"descricao": "",
+            	"horaInicial": "",
+            	"horaFinal" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Horario/alterar
+        name: alterar
+        meta:
+          id: req_de9d0f260b514b87a172319c130b9903
+          created: 1779502238159
+          modified: 1779502358633
+          isPrivate: false
+          description: ""
+          sortKey: -1779290792437
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"descricao": "",
+            	"horaInicial": "",
+            	"horaFinal" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Professor
+    meta:
+      id: fld_4c276fd030844bca98c97c1654edcf09
+      created: 1779502532938
+      modified: 1779502532938
+      sortKey: -1779290786317.5
+      description: ""
+    children:
+      - url: http://localhost/ProjetoReservaSala/Professor/desativar
+        name: desativar
+        meta:
+          id: req_02747be1f07740a3a51a85f1865a115c
+          created: 1779502532938
+          modified: 1779502631648
+          isPrivate: false
+          description: ""
+          sortKey: -1779255590652
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Professor/consultar
+        name: consultar
+        meta:
+          id: req_550c5ca7171d405283d32d7ce6b5a333
+          created: 1779502532938
+          modified: 1779502600719
+          isPrivate: false
+          description: ""
+          sortKey: -1779361196007
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"nome": "",
+            	"cpf": "",
+            	"tipo" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Professor/alterar
+        name: alterar
+        meta:
+          id: req_6c0e32bc61794b4492873c9782e567ca
+          created: 1779502532938
+          modified: 1779502624536
+          isPrivate: false
+          description: ""
+          sortKey: -1779290792437
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"nome": "",
+            	"cpf": "",
+            	"tipo" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Professor/inserir
+        name: inserir
+        meta:
+          id: req_6d3f317c2edd4a438f9215d6635e5e17
+          created: 1779502532938
+          modified: 1779503704665
+          isPrivate: false
+          description: ""
+          sortKey: -1779502003147
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Antonio",
+            	"cpf": "12345678910",
+            	"tipo" : "Informatica"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Turma
+    meta:
+      id: fld_80fcb8e8c062491bb1731ec05a02b1cd
+      created: 1779502792416
+      modified: 1779502898507
+      sortKey: -1779290786267.5
+      description: ""
+    children:
+      - url: http://localhost/ProjetoReservaSala/Turma/inserir
+        name: desativar
+        meta:
+          id: req_417d791500114358bafcbf0d79b068ba
+          created: 1779502792416
+          modified: 1779502815052
+          isPrivate: false
+          description: ""
+          sortKey: -1779255590652
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Turma/inserir
+        name: alterar
+        meta:
+          id: req_b00a1ae5cae8495c85629cb6cffae049
+          created: 1779502792416
+          modified: 1779502863209
+          isPrivate: false
+          description: ""
+          sortKey: -1779290792437
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"descricao": "",
+            	"capacidade": "",
+            	"dataInicio" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Turma/inserir
+        name: inserir
+        meta:
+          id: req_be18bb7784974291b20075cdfd7284e6
+          created: 1779502792416
+          modified: 1779502839763
+          isPrivate: false
+          description: ""
+          sortKey: -1779502003147
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricao": "",
+            	"capacidade": "",
+            	"dataInicio" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Turma/inserir
+        name: consultar
+        meta:
+          id: req_e497248fbf4242b7bceab01d09ae0ad9
+          created: 1779502792416
+          modified: 1779502858706
+          isPrivate: false
+          description: ""
+          sortKey: -1779361196007
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": "",
+            	"descricao": "",
+            	"capacidade": "",
+            	"dataInicio" : ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Mapa
+    meta:
+      id: fld_087b21b0de714612a12cb73f6f61ced1
+      created: 1779502904829
+      modified: 1779502904829
+      sortKey: -1779290786217.5
+      description: ""
+    children:
+      - url: http://localhost/ProjetoReservaSala/Mapa/inserir
+        name: inserir
+        meta:
+          id: req_3d2e1e8a78674a1784e09ec5085bb948
+          created: 1779502904829
+          modified: 1779502953515
+          isPrivate: false
+          description: ""
+          sortKey: -1779502003147
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"dataReserva": "",
+            	"codSala": "",
+            	"codHorario" : "",
+            	"codTurma": "",
+            	"codProfessor": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Mapa/inserir
+        name: consultar
+        meta:
+          id: req_7d1434cbb6794d97a777ded10e7a4842
+          created: 1779502904829
+          modified: 1779503165439
+          isPrivate: false
+          description: ""
+          sortKey: -1779361196007
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo" : "",
+            	"dataReserva": "",
+            	"codSala": "",
+            	"codHorario" : "",
+            	"codTurma": "",
+            	"codProfessor": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Mapa/inserir
+        name: alterar
+        meta:
+          id: req_855965abe97440b4ad25101c4a2f37e1
+          created: 1779502904829
+          modified: 1779503011907
+          isPrivate: false
+          description: ""
+          sortKey: -1779290792437
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo" : "",
+            	"dataReserva": "",
+            	"codSala": "",
+            	"codHorario" : "",
+            	"codTurma": "",
+            	"codProfessor": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Mapa/inserir
+        name: desativar
+        meta:
+          id: req_89319d502966444ab7b473da8df5fc15
+          created: 1779502904829
+          modified: 1779503028808
+          isPrivate: false
+          description: ""
+          sortKey: -1779255590652
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"codigo": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Usuario
+    meta:
+      id: fld_25b0dd5f9f45434b866e8b6381e258ba
+      created: 1779503151484
+      modified: 1779503151484
+      sortKey: -1779290786167.5
+      description: ""
+    children:
+      - url: http://localhost/ProjetoReservaSala/Usuario/inserir
+        name: inserir
+        meta:
+          id: req_2f26ea0426b443c6a50998e7e5bd2545
+          created: 1779503151484
+          modified: 1779503362115
+          isPrivate: false
+          description: ""
+          sortKey: -1779502003147
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "marcos",
+            	"email" : "marcos@gmail.com",
+            	"usuario": "marcos2",
+            	"senha": "as2392"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Usuario/inserir
+        name: consultar
+        meta:
+          id: req_637d6689e41a43d6b99de1aa168df857
+          created: 1779503151484
+          modified: 1779503426270
+          isPrivate: false
+          description: ""
+          sortKey: -1779361196007
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "",
+            	"email" : "",
+            	"usuario": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Usuario/inserir
+        name: desativar
+        meta:
+          id: req_6e8ab38e338c4b78b078383c7052b915
+          created: 1779503151484
+          modified: 1779503282980
+          isPrivate: false
+          description: ""
+          sortKey: -1779255590652
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"idUsuario": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost/ProjetoReservaSala/Usuario/inserir
+        name: alterar
+        meta:
+          id: req_8a64f79be6744cbf861e65d992f6b0bc
+          created: 1779503151484
+          modified: 1779503264878
+          isPrivate: false
+          description: ""
+          sortKey: -1779290792437
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"isUsuario" : "",
+            	"nome": "",
+            	"email" : "",
+            	"senha": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1779220332932
+    modified: 1779220332932
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1779220332929
+    modified: 1779220332929
+    isPrivate: false
