@@ -203,7 +203,7 @@ class Usuario extends CI_Controller {
                     $this->setUsuario($resultado->usuario);
 
                     $this->load->model('M_usuario');
-                    $resBanco = $this->M_sala->consultar($this->getNome(),
+                    $resBanco = $this->M_usuario->consultar($this->getNome(),
                                                          $this->getEmail(),
                                                          $this->getUsuario());
 
@@ -255,7 +255,7 @@ class Usuario extends CI_Controller {
                 $erros[] = ['codigo' => 99, 'msg' => 'Campos inexistentes ou incorretos no FrontEnd.'];
             }else{
                 //Pelo menos um dos três parametros precisam ter dados para acontecer a atualização
-                if (trim($resultado->descricao) == '' && trim($resultado->andar) == '' && trim($resultado->capacidade) ==''){
+                if (trim($resultado->nome) == '' && trim($resultado->email) == '' && trim($resultado->senha) == ''){
                     $erros[] = ['codigo' => 12,
                                 'msg' => 'Pelo menos um parâmetro precisa ser passado para atualização'];
                 }else{
@@ -430,7 +430,7 @@ class Usuario extends CI_Controller {
                     $this->setSenha($resultado->senha);
 
                     $this->load->model('M_usuario');
-                    $resBanco = $this->M_usuario->validaLogin($this->getIdUsuario(),
+                    $resBanco = $this->M_usuario->validaLogin($this->getUsuario(),
                                                               $this->getSenha());
 
                     if ($resBanco['codigo'] == 1){
